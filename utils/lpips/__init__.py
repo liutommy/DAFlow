@@ -7,7 +7,7 @@ from __future__ import division
 from __future__ import print_function
 
 import numpy as np
-from skimage.measure import compare_ssim
+from skimage.metrics import structural_similarity
 import torch
 from torch.autograd import Variable
 
@@ -96,7 +96,7 @@ def psnr(p0, p1, peak=255.0):
 
 
 def dssim(p0, p1, range=255.0):
-    return (1 - compare_ssim(p0, p1, data_range=range, multichannel=True)) / 2.0
+    return (1 - structural_similarity(p0, p1, data_range=range, multichannel=True)) / 2.0
 
 
 def rgb2lab(in_img, mean_cent=False):
